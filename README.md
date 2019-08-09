@@ -1,7 +1,8 @@
 # git_crawler
-Uses OctoKit to walk an organization's git repo. 
+Uses https://www.npmjs.com/package/@octokit/rest to walk an organization's git repos. 
 
-Requires an environment variable `GIT_ACCESS_KEY`
+Goto https://github.com/settings/tokens to generate a personal access token
+Store it in an environment variable `GIT_ACCESS_KEY`
 
 `npm run start` - pulls code into a file (data.txt)
 
