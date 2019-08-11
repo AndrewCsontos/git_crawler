@@ -1,5 +1,5 @@
 # git_crawler
-Uses https://www.npmjs.com/package/@octokit/rest to walk an organization's git repos. 
+Uses https://www.npmjs.com/package/@octokit/rest to walk an organization's git repos and list topics.
 
 Goto https://github.com/settings/tokens to generate a personal access token
 Store it in an environment variable `GIT_ACCESS_KEY`
