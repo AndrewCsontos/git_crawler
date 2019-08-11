@@ -1,6 +1,11 @@
 const fs = require('fs');
 const Octokit = require('@octokit/rest')
 
+//Modify REPOS and TOPICS_TO_ADD
+const REPOS = [];
+const TOPICS_TO_ADD = '';
+
+
 const octokit = new Octokit({
     auth: 'token ' + process.env.GIT_ACCESS_KEY,
     previews: [
@@ -8,17 +13,21 @@ const octokit = new Octokit({
     ]
 })
 
-  octokit.hook.error('request', async (error, options) => {
+octokit.hook.error('request', async (error, options) => {
     console.log('we got an error');
     throw error;
-  })
+})
 
-//list of repos to add a topic to
-const REPOS = [];
-const TOPICS_TO_ADD = '';
 
 const start = async function() {
 
+    if (!REPOS.length) {
+        return new Error('REPOS constant is empty.  Modify code to add it.')
+    }
+
+    if (!TOPICS_TO_ADD) {
+        return new Error('TOPICS_TO_ADD constant is empty.  Modify code to add it.')
+    }
 
   for (var i=0; i< REPOS.length; i++) {
     var repoName = REPOS[i];
@@ -35,11 +44,11 @@ const start = async function() {
   }
 }
 
-// Call start
-
-console.log('Work in progress. Modify code to set REPOS to a list of repositories to change, then TOPICS_TO_ADD with a list of topics')
-//start();
-
+console.log('Modify code to set REPOS to a list of repositories to change, then TOPICS_TO_ADD with a list of topics')
+start()
+    .then (console.log)
+    .catch(console.error)
+;
 
 const addTopic = async function (repoName, existingTopics, newTopic) {
 
